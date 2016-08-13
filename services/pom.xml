@@ -7,15 +7,26 @@
     <artifactId>calculator</artifactId>
     <version>1.0-SNAPSHOT</version>
   </parent>
+
   <groupId>by.belotserkovsky</groupId>
   <artifactId>services</artifactId>
   <version>1.0-SNAPSHOT</version> <packaging>jar</packaging>
+
   <name>services</name>
   <url>http://maven.apache.org</url>
+
   <properties>
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
   </properties>
+
   <dependencies>
+
+    <dependency>
+      <groupId>by.belotserkovsky</groupId>
+      <artifactId>dao</artifactId>
+      <version>1.0-SNAPSHOT</version>
+    </dependency>
+
     <dependency>
       <groupId>junit</groupId>
       <artifactId>junit</artifactId>
@@ -23,4 +34,5 @@
       <scope>test</scope>
     </dependency>
   </dependencies>
+
 </project>
