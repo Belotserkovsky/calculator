@@ -1,7 +1,11 @@
 package by.belotserkovsky.dao;
 
+import by.belotserkovsky.pojos.User;
+
 /**
- * Created by Kostya on 13.08.2016.
+ * Created by K.Belotserkovsky
  */
-public interface IUserDao extends IDao {
+public interface IUserDao extends IDao<User> {
+
+    User getByUserName(String userName);
 }

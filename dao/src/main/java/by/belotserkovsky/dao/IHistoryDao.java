@@ -9,6 +9,17 @@ import java.util.List;
  */
 public interface IHistoryDao extends IDao<History> {
 
-    List<History> getAll();
+    /**
+     * This method use for pagination
+     * @param offset
+     * @param numberOfRecords
+     * @return List<User>
+     */
+    List<History> getAll(int offset, int numberOfRecords);
+
+    /**
+     * @return Number of rows in user's table (for pagination)
+     */
+    int getFoundRows();
 
 }
