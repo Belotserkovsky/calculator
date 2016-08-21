@@ -50,7 +50,7 @@ public class History implements Serializable{
         return creationDate;
     }
 
-    @ManyToMany
+    @ManyToOne
     @JoinColumn(name = "F_USER_ID")
     public User getUser() {
         return user;

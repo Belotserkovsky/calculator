@@ -15,7 +15,7 @@
 
     <bean id="dataSource" class="com.mchange.v2.c3p0.ComboPooledDataSource" destroy-method="close">
         <property name="driverClass" value="com.mysql.jdbc.Driver" />
-        <property name="jdbcUrl" value="jdbc:mysql://localhost:3306/calc"/>
+        <property name="jdbcUrl" value="jdbc:mysql://localhost:3306/calc_db"/>
         <property name="user" value="root" />
         <property name="password" value="kost" />
         <property name="maxPoolSize" value="50" />

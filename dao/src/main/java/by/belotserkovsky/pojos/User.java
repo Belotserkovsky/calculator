@@ -1,6 +1,8 @@
 package by.belotserkovsky.pojos;
 
 import javax.persistence.*;
+import javax.validation.constraints.Pattern;
+import javax.validation.constraints.Size;
 import java.io.Serializable;
 import java.util.Set;
 
@@ -13,19 +15,29 @@ import java.util.Set;
 public class User implements Serializable{
 
     private Long userId;
+
+    @Size(max = 30, message = "Maximum length 30 symbols")
+    private String name;
+
+    @Size(min = 3, max = 20, message = "Username must be between 3 and 20 characters long.")
+    @Pattern(regexp = "^[a-zA-Z0-9]+$", message = "Username must be alphanumeric with no spaces")
     private String userName;
-    private String login;
+
+    @Size(min = 3, max = 10, message = "Username must be between 3 and 10 characters long.")
     private String password;
+
+    @Pattern(regexp = "[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+.[A-Za-z]{2,4}", message="Incorrect email address.")
     private String email;
+
     private String role;
     private Set<History> CalcHistory;
 
     public User() {
     }
 
-    public User(String userName, String login, String password, String email, String role) {
+    public User(String name, String userName, String password, String email, String role) {
+        this.name = name;
         this.userName = userName;
-        this.login = login;
         this.password = password;
         this.email = email;
         this.role = role;
@@ -38,14 +50,14 @@ public class User implements Serializable{
         return userId;
     }
 
-    @Column(name = "F_USER_NAME")
-    public String getUserName() {
-        return userName;
+    @Column(name = "F_NAME")
+    public String getName() {
+        return name;
     }
 
-    @Column(name = "F_LOGIN", unique = true)
-    public String getLogin() {
-        return login;
+    @Column(name = "F_USER_NAME", unique = true)
+    public String getUserName() {
+        return userName;
     }
 
     @Column (name = "F_PASSWORD")
@@ -72,12 +84,12 @@ public class User implements Serializable{
         this.userId = userId;
     }
 
-    public void setUserName(String userName) {
-        this.userName = userName;
+    public void setName(String name) {
+        this.name = name;
     }
 
-    public void setLogin(String login) {
-        this.login = login;
+    public void setUserName(String userName) {
+        this.userName = userName;
     }
 
     public void setPassword(String password) {
@@ -90,5 +102,9 @@ public class User implements Serializable{
 
     public void setRole(String role) {
         this.role = role;
+    }
+
+    public void setCalcHistory(Set<History> calcHistory) {
+        CalcHistory = calcHistory;
     }
 }
