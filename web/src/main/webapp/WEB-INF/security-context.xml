@@ -13,7 +13,7 @@
         <intercept-url pattern="/main**" access="hasRole('ROLE_USER')"/>
         <form-login login-processing-url="/j_spring_security_check"
                     login-page="/welcome"
-                    default-target-url="/main?successAuth"
+                    default-target-url="/user/main?successAuth"
                     username-parameter="userName"
                     password-parameter="password"
                     authentication-failure-url="/welcome?loginFail"

@@ -28,7 +28,16 @@ public class UserController {
     private IUserService userService;
 
     @RequestMapping(value = "/main", method = RequestMethod.GET)
-    public String userMainPage(){
+    public String mainPage(ModelMap model){
+        String result = "12345";
+        model.addAttribute("result", result);
+        return "main";
+    }
+
+    @RequestMapping(value = "/main", method = RequestMethod.GET, params = "successAuth")
+    public String userMainPage(ModelMap model){
+        String result = "12345";
+        model.addAttribute("result", result);
         return "main";
     }
 

@@ -10,8 +10,8 @@
 
 <div style = "text-align: center;">
 
-    <div style="float: left;">
-        <a href="/home?locale=ru" style="padding: 5px">RU</a> | <a href="/home?locale=en" style="padding: 5px">EN</a>
+    <div style="float: right;">
+        <a href="/welcome?locale=ru" style="padding: 5px">RU</a> | <a href="/welcome?locale=en" style="padding: 5px">EN</a>
     </div>
     <br>
 
@@ -63,7 +63,6 @@
         <button class="btn-link">
             <c:url var="regUrl" value="/user?new"/>
             <a href="${regUrl}"><spring:message code="welcome.register"/></a>
-            <a href="${regUrl}">Registration</a>
         </button>
     </form>
 

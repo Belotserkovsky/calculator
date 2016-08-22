@@ -4,10 +4,11 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 <head>
-    <title></title>
+    <title>Registration</title>
+    <link href="<c:url value="/assets/css/bootstrap.min.css"/>" rel="stylesheet"  type="text/css"/>
 </head>
 <body>
-<div style="float: left;">
+<div style="float: right">
     <a href="/user?new&locale=ru" style="padding: 5px">RU</a> | <a href="/user?new&locale=en" style="padding: 5px">EN</a>
 </div>
 <br>

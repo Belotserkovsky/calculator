@@ -25,7 +25,7 @@
 
 <c:url value="/main?calculate" var="calcUrl" />
 
-<form name="calc" id="calculator" method="post">
+<sf:form name="calc" id="calculator" modelAttribute="result" method="post" action="${calcUrl}">
     <table>
         <tr>
             <td>
@@ -51,12 +51,12 @@
                 <br>
                 <input type="button" name="clear" value="c" OnClick="calc.input.value = ''">
                 <input type="button" name="zero" value="0" OnClick="calc.input.value += '0'">
-                <input type="button" name="result" value="=" OnClick="calc.input.value = eval(calc.input.value)">
+                <input type="submit" name="res" value="=" OnClick="calc.input.value = '${result}'">
                 <input type="button" name="div"  value="/" OnClick="calc.input.value += '/'">
             </td>
         </tr>
     </table>
-</form>
+</sf:form>
 
 <p><spring:message code="welcome.userName"/> : ${user.name} (<security:authentication property="principal.username"/>)</p>
 <br/>
