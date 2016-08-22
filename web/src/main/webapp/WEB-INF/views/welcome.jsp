@@ -4,13 +4,12 @@
 
 <head>
     <title>Welcome page</title>
-    <link href="<c:url value="/assets/css/bootstrap.min.css"/>" rel="stylesheet"  type="text/css"/>
+    <link href="<c:url value="/assets/css/bootstrap.min.css"/>" rel="stylesheet" type="text/css"/>
+    <link href="<c:url value="/assets/css/bootstrap.css"/>" rel="stylesheet" type="text/css"/>
 </head>
 <body>
 
-<div style = "text-align: center;">
-
-    <div style="float: right;">
+    <div style="text-align: center">
         <a href="/welcome?locale=ru" style="padding: 5px">RU</a> | <a href="/welcome?locale=en" style="padding: 5px">EN</a>
     </div>
     <br>
@@ -28,29 +27,27 @@
         </div>
     </c:if>
 
-    <form class="form-horizontal" name="login" action="${loginUrl}" method="post">
+    <form class="form-horizontal" action="${loginUrl}" method="POST">
 
         <div class="control-group">
-            <label class="control-label" for="userName"><spring:message code="welcome.userName"/></label>
-                <input type="text" id="userName" name="userName" placeholder="Enter user name" required="required" />
+            <div class="controls">
+                <input type="text" id="userName" placeholder="Username" required="required" />
+            </div>
         </div>
 
         <div class="control-group">
-            <label class="control-label" for="password"><spring:message code="welcome.password"/></label>
-                <input type="password" id="password" name="password" placeholder="Enter password" required="required">
+            <div class="controls">
+                <input type="password" id="password" placeholder="Password" required="required">
+            </div>
         </div>
 
         <div class="control-group">
             <div class="controls">
                 <label class="checkbox">
-                    <input id="remember_me" name="_spring_security_remember_me" type="checkbox">
-                    <spring:message code="welcome.rememberMe"/>
+                    <input id="remember_me" name="_spring_security_remember_me" type="checkbox"><spring:message code="welcome.rememberMe"/>
                 </label>
             </div>
         </div>
-
-        <%--<input id="remember_me" name="_spring_security_remember_me" type="checkbox"/>--%>
-        <%--<label for="remember_me" class="inline"><spring:message code="page.login.rememberMe"/></label>--%>
 
         <button type="submit" class="btn"><spring:message code="welcome.singIn"/></button>
 
@@ -65,8 +62,6 @@
             <a href="${regUrl}"><spring:message code="welcome.register"/></a>
         </button>
     </form>
-
-</div>
 
 </body>
 </html>
