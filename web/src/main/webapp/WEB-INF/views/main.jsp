@@ -58,6 +58,8 @@
     </table>
 </sf:form>
 
+
+
 <p><spring:message code="welcome.userName"/> : ${user.name} (<security:authentication property="principal.username"/>)</p>
 <br/>
 <c:url var="logout" value="/calc/user?logout"/>
