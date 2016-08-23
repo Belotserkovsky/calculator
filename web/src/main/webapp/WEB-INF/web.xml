@@ -56,7 +56,7 @@
   </filter>
   <filter-mapping>
     <filter-name>hibFilter</filter-name>
-    <url-pattern>/*</url-pattern>
+    <url-pattern>/calc/*</url-pattern>
   </filter-mapping>
 
   <filter>

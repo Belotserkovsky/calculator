@@ -10,11 +10,11 @@
 <body>
 
     <div style="text-align: center">
-        <a href="/welcome?locale=ru" style="padding: 5px">RU</a> | <a href="/welcome?locale=en" style="padding: 5px">EN</a>
+        <a href="/calc/welcome?locale=ru" style="padding: 5px">RU</a> | <a href="/calc/welcome?locale=en" style="padding: 5px">EN</a>
     </div>
     <br>
 
-    <c:url value="/j_spring_security_check" var="loginUrl" />
+    <c:url value="/calc/j_spring_security_check" var="loginUrl" />
 
     <c:if test="${param.logout != null}">
         <div class="alert alert-success">
@@ -31,13 +31,13 @@
 
         <div class="control-group">
             <div class="controls">
-                <input type="text" id="userName" placeholder="Username" required="required" />
+                <input type="text" id="uName" name="userName" placeholder="Username" required="required" />
             </div>
         </div>
 
         <div class="control-group">
             <div class="controls">
-                <input type="password" id="password" placeholder="Password" required="required">
+                <input type="password" id="uPass" name="password" placeholder="Password" required="required">
             </div>
         </div>
 
@@ -58,7 +58,7 @@
         </c:if>
 
         <button class="btn-link">
-            <c:url var="regUrl" value="/user?new"/>
+            <c:url var="regUrl" value="/calc/user?new"/>
             <a href="${regUrl}"><spring:message code="welcome.register"/></a>
         </button>
     </form>

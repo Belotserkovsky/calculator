@@ -23,13 +23,13 @@
     </div>
 </c:if>
 
-<c:url value="/main?calculate" var="calcUrl" />
+<c:url value="/calc/main?calculate" var="calcUrl" />
 
 <sf:form name="calc" id="calculator" modelAttribute="result" method="post" action="${calcUrl}">
     <table>
         <tr>
             <td>
-                <input type="text" name="input" size="16" class="display">
+                <input type="text" name="input" value="${result}" size="16" class="display">
             </td>
         </tr>
         <tr>
@@ -51,7 +51,7 @@
                 <br>
                 <input type="button" name="clear" value="c" OnClick="calc.input.value = ''">
                 <input type="button" name="zero" value="0" OnClick="calc.input.value += '0'">
-                <input type="submit" name="res" value="=" OnClick="calc.input.value = '${result}'">
+                <input type="submit" name="res" value="=">
                 <input type="button" name="div"  value="/" OnClick="calc.input.value += '/'">
             </td>
         </tr>
@@ -60,7 +60,7 @@
 
 <p><spring:message code="welcome.userName"/> : ${user.name} (<security:authentication property="principal.username"/>)</p>
 <br/>
-<c:url var="logout" value="/user?logout"/>
+<c:url var="logout" value="/calc/user?logout"/>
 <a href="${logout}"><spring:message code="main.logout"/></a>
 </body>
 </html>

@@ -13,7 +13,7 @@
 </div>
 <br>
 <p><spring:message code="registration.fill.fields"/>:</p>
-<c:url value="/user?add" var="addUserUrl" />
+<c:url value="/calc/user?add" var="addUserUrl" />
 
 <sf:form method="POST" modelAttribute="user" action="${addUserUrl}">
     <input type="hidden"  name="userId" value="${user.userId}"/>

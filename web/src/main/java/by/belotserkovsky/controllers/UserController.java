@@ -20,7 +20,7 @@ import javax.validation.Valid;
  * Created by K.Belotserkovsky
  */
 
-@RequestMapping(value = "/user")
+@RequestMapping(value = "/calc/user")
 @Controller
 public class UserController {
 
@@ -59,7 +59,7 @@ public class UserController {
             return "registration";
         }
         userService.createOrUpdateUser(user);
-        return "redirect:/welcome?login";
+        return "redirect:/calc/welcome?login";
     }
 
     @RequestMapping(method = RequestMethod.GET, params = "logout")
