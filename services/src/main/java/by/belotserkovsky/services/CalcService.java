@@ -12,6 +12,22 @@ public class CalcService implements ICalcService{
         if(op == '+'|| op == '-' || op == '*' || op == '/'){
             return true;
         }
+        return false;
+    }
+
+    public int checkOpPriority(char op){
+        if (op == '*' || op == '/')
+            return 2;
+        else
+            return 1;
+
+    }
+
+    public String transformToRpn(String original){
+        double numberA = 0;
+        double numberB = 0;
+        String temp;
+
     }
 
 
