@@ -20,7 +20,7 @@ public interface ICalcService {
     int checkOpPriority(char op);
 
     /**
-     * Transformation original string to Reverse Polish Notation
+     * Transformation original string to Reverse Polish Notation (algorithm sorting station)
      * @param original input string
      * @return Output string (RPN)
      */

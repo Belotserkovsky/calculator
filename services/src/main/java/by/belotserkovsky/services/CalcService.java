@@ -24,10 +24,37 @@ public class CalcService implements ICalcService{
     }
 
     public String transformToRpn(String original){
-        double numberA = 0;
-        double numberB = 0;
-        String temp;
+        StringBuilder sOut = new StringBuilder("");
+        StringBuilder sStack = new StringBuilder("");
+        char cIn;
+        char cTemp;
 
+        for (int i = 0; i < original.length(); ++i){
+            cIn = original.charAt(i);
+            if(isOperator(cIn)) {
+                while (sStack.length() > 0) {
+                    cTemp = sStack.substring(sStack.length() - 1).charAt(0);
+                    if (checkOpPriority(cIn) <= checkOpPriority(cTemp)) {
+                        sOut.append(" ").append(cTemp).append(" ");
+                        sStack.setLength((sStack.length() - 1));
+                    } else {
+                        sOut.append(" ");
+                        break;
+                    }
+                }
+                sOut.append(" ");
+                sStack.append(cIn);
+            } else {
+                sOut.append(cIn);
+            }
+        }
+
+        while (sStack.length() > 0){
+            sOut.append(" ").append(sStack.substring((sStack.length() - 1)));
+            sStack.setLength(sStack.length() - 1);
+        }
+
+        return sOut.toString();
     }
 
 
