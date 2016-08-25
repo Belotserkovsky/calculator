@@ -2,6 +2,9 @@ package by.belotserkovsky.services;
 
 import org.apache.log4j.Logger;
 
+import java.util.Stack;
+import java.util.StringTokenizer;
+
 /**
  * Created by K.Belotserovsky
  */
@@ -57,5 +60,39 @@ public class CalcService implements ICalcService{
         return sOut.toString();
     }
 
+    public Double calculateRpn(String rpn){
+        double numberA;
+        double numberB;
+        String sTemp;
+
+        Stack<Double> stack = new Stack<Double>();
+        StringTokenizer sRpn = new StringTokenizer(rpn);
+
+        while(sRpn.hasMoreTokens()){
+            sTemp = sRpn.nextToken().trim();
+            if(sTemp.length() == 1 && isOperator(sTemp.charAt(0))){
+                if(stack.size() < 2){
+                    log.error("Not enough data on the stack for the operation " + sTemp);
+                }
+                numberB = stack.pop();
+                numberA = stack.pop();
+                switch (sTemp.charAt(0)){
+                    case ('+'): numberA += numberB; break;
+                    case ('-'): numberA -= numberB; break;
+                    case ('*'): numberA *= numberB; break;
+                    case ('/'): numberA /= numberB; break;
+                }
+                stack.push(numberA);
+            } else {
+                numberA = Double.parseDouble(sTemp);
+                stack.push(numberA);
+            }
+        }
+        if(stack.size() > 1){
+            log.error("The number of operands does not match the number of operations!");
+        }
+
+        return stack.pop();
+    }
 
 }

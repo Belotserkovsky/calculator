@@ -31,13 +31,6 @@ public interface ICalcService {
      * @param rpn
      * @return double
      */
-    double calculateRpn(String rpn);
-
-    /**
-     * General method
-     * @param expression
-     * @return
-     */
-    String calculate(String expression);
+    Double calculateRpn(String rpn);
 
 }
