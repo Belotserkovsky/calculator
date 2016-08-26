@@ -13,7 +13,7 @@
         <intercept-url pattern="/calc/user/main**" access="hasRole('ROLE_USER')"/>
         <form-login login-processing-url="/calc/j_spring_security_check"
                     login-page="/calc/welcome"
-                    default-target-url="/calc/user/main?successAuth"
+                    default-target-url="/calc/user/main"
                     username-parameter="userName"
                     password-parameter="password"
                     authentication-failure-url="/calc/welcome?loginFail"

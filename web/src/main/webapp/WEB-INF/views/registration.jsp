@@ -5,7 +5,8 @@
 <html>
 <head>
     <title>Registration</title>
-    <link href="<c:url value="/assets/css/bootstrap.min.css"/>" rel="stylesheet"  type="text/css"/>
+    <link href="<c:url value="/assets/css/bootstrap.min.css"/>" rel="stylesheet" type="text/css"/>
+    <link href="<c:url value="/assets/css/bootstrap.css"/>" rel="stylesheet" type="text/css"/>
 </head>
 <body>
 <div style="float: right">
@@ -15,6 +16,7 @@
 <p><spring:message code="registration.fill.fields"/>:</p>
 <c:url value="/calc/user?add" var="addUserUrl" />
 
+<div style="text-align: center">
 <sf:form method="POST" modelAttribute="user" action="${addUserUrl}">
     <input type="hidden"  name="userId" value="${user.userId}"/>
     <fieldset>
@@ -23,7 +25,7 @@
                 <th><label for="name"><spring:message code="registration.name"/></label></th>
                 <td>
                     <sf:input id="name" type="text" value="${user.name}" path="name" size="30" placeholder="User Name"/><br/>
-                    <sf:errors path="name" cssStyle="color: red"/>
+                    <sf:errors path="name" cssStyle="color: red" />
                 </td>
             </tr>
             <tr>
@@ -58,5 +60,6 @@
         </table>
     </fieldset>
 </sf:form>
+</div>
 </body>
 </html>

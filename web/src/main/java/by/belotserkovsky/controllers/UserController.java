@@ -1,6 +1,8 @@
 package by.belotserkovsky.controllers;
 
 import by.belotserkovsky.pojos.User;
+import by.belotserkovsky.services.ICalcService;
+import by.belotserkovsky.services.IHistoryService;
 import by.belotserkovsky.services.IUserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
@@ -11,6 +13,7 @@ import org.springframework.ui.ModelMap;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -20,24 +23,34 @@ import javax.validation.Valid;
  * Created by K.Belotserkovsky
  */
 
-@RequestMapping(value = "/calc/user")
 @Controller
+@RequestMapping(value = "/calc/user")
 public class UserController {
 
     @Autowired
     private IUserService userService;
 
+    @Autowired
+    private ICalcService calcService;
+
+    @Autowired
+    private IHistoryService historyService;
+
     @RequestMapping(value = "/main", method = RequestMethod.GET)
     public String mainPage(ModelMap model){
-        String result = "12345";
+        String result = "";
         model.addAttribute("result", result);
         return "main";
     }
 
-    @RequestMapping(value = "/main", method = RequestMethod.GET, params = "successAuth")
-    public String userMainPage(ModelMap model){
-        String result = "12345";
-        model.addAttribute("result", result);
+    @RequestMapping(value = "/main", method = RequestMethod.POST, params = "calc")
+    public String calculate(ModelMap model,
+                            @RequestParam(value = "userName") String name,
+                            @RequestParam(value = "expression") String original){
+        String sIn = calcService.transformToRpn(original);
+        Double result = calcService.calculateRpn(sIn);
+        historyService.saveHistory(original, result.toString(), name);
+        model.addAttribute("expression", result);
         return "main";
     }
 
@@ -68,6 +81,6 @@ public class UserController {
         if (auth != null) {
             new SecurityContextLogoutHandler().logout(request, response, auth);
         }
-        return "redirect:/welcome?logout";
+        return "redirect:/calc/welcome?logout";
     }
 }

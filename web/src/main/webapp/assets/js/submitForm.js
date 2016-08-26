@@ -1,7 +1,7 @@
 /**
- * Created by Kostya on 25.08.2016.
+ * Created by K.Belotserkovsky
  */
 function submitForm(){
-    document.getElementById("calculator").submit();
+    document.forms["calculator"].submit();
 } 
     

@@ -1,6 +1,7 @@
 package by.belotserkovsky.services;
 
 import org.apache.log4j.Logger;
+import org.springframework.stereotype.Service;
 
 import java.util.Stack;
 import java.util.StringTokenizer;
@@ -8,6 +9,7 @@ import java.util.StringTokenizer;
 /**
  * Created by K.Belotserovsky
  */
+@Service
 public class CalcService implements ICalcService{
     private static Logger log = Logger.getLogger(UserService.class);
 
@@ -72,7 +74,7 @@ public class CalcService implements ICalcService{
             sTemp = sRpn.nextToken().trim();
             if(sTemp.length() == 1 && isOperator(sTemp.charAt(0))){
                 if(stack.size() < 2){
-                    log.error("Not enough data on the stack for the operation " + sTemp);
+                    log.error("Not enough data on the stack for the operation: " + sTemp);
                 }
                 numberB = stack.pop();
                 numberA = stack.pop();
