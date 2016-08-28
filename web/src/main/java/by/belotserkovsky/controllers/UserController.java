@@ -1,5 +1,6 @@
 package by.belotserkovsky.controllers;
 
+import by.belotserkovsky.pojos.History;
 import by.belotserkovsky.pojos.User;
 import by.belotserkovsky.services.ICalcService;
 import by.belotserkovsky.services.IHistoryService;
@@ -17,7 +18,10 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
+import java.security.Principal;
+import java.util.List;
 
 /**
  * Created by K.Belotserkovsky
@@ -37,7 +41,9 @@ public class UserController {
     private IHistoryService historyService;
 
     @RequestMapping(value = "/main", method = RequestMethod.GET)
-    public String mainPage(ModelMap model){
+    public String mainPage(ModelMap model, HttpSession session, Principal principal){
+        User user = userService.getUserByUserName(principal.getName());
+        session.setAttribute("user", user);
         String result = "";
         model.addAttribute("result", result);
         return "main";
@@ -45,11 +51,11 @@ public class UserController {
 
     @RequestMapping(value = "/main", method = RequestMethod.POST, params = "calc")
     public String calculate(ModelMap model,
-                            @RequestParam(value = "userName") String name,
-                            @RequestParam(value = "expression") String original){
+                            @RequestParam(value = "input") String original,
+                            Principal principal){
         String sIn = calcService.transformToRpn(original);
-        Double result = calcService.calculateRpn(sIn);
-        historyService.saveHistory(original, result.toString(), name);
+        String result = calcService.calculateRpn(sIn);
+        historyService.saveHistory(original, result, principal.getName());
         model.addAttribute("expression", result);
         return "main";
     }
@@ -59,8 +65,15 @@ public class UserController {
      * mapping "/user?new"
      * @return String page
      */
-    @RequestMapping(method = RequestMethod.GET, params = "new")
+    @RequestMapping(value = "/new", method = RequestMethod.GET)
     public String register(ModelMap model){
+        User user = new User();
+        model.addAttribute("user", user);
+        return "registration";
+    }
+
+    @RequestMapping(value = "/new", method = RequestMethod.GET, params = "fail")
+    public String registerFail(ModelMap model){
         User user = new User();
         model.addAttribute("user", user);
         return "registration";
@@ -71,16 +84,44 @@ public class UserController {
         if(br.hasErrors()){
             return "registration";
         }
+        User uTemp = userService.getUserByUserName(user.getUserName());
+        if(uTemp != null){
+            return "redirect:/calc/user/new?fail";
+        }
         userService.createOrUpdateUser(user);
         return "redirect:/calc/welcome?login";
     }
 
-    @RequestMapping(method = RequestMethod.GET, params = "logout")
-    public String logoutPage (HttpServletRequest request, HttpServletResponse response) {
+    @RequestMapping(value = "/main", method = RequestMethod.POST, params = "edit")
+    public String editUserInfo(ModelMap model, Principal principal){
+        User user = userService.getUserByUserName(principal.getName());
+        model.addAttribute("user", user);
+        return "registration";
+    }
+
+    @RequestMapping(value = "/history", method = RequestMethod.GET, params = "page")
+    public String showHistory(ModelMap model, @RequestParam (value = "page") String page){
+        int currentPage = 1;
+        int recordsPerPage = 3;
+        if(page.length() != 0) {
+            currentPage = Integer.parseInt(page);
+        }
+        int allRecords = historyService.getRowsHistory();
+        List<History> listHistory = historyService.getHistory((currentPage-1)*recordsPerPage, recordsPerPage);
+        int numberOfPages = (int) Math.ceil((double)allRecords / recordsPerPage);
+        model.addAttribute("listHistory", listHistory);
+        model.addAttribute("numberOfPages", numberOfPages);
+        model.addAttribute("currentPage", currentPage);
+        return "history";
+    }
+
+    @RequestMapping(value = "/main", method = RequestMethod.GET, params = "logout")
+    public String logoutPage (HttpServletRequest request, HttpServletResponse response, HttpSession session) {
         Authentication auth = SecurityContextHolder.getContext().getAuthentication();
         if (auth != null) {
             new SecurityContextLogoutHandler().logout(request, response, auth);
         }
+        session.invalidate();
         return "redirect:/calc/welcome?logout";
     }
 }

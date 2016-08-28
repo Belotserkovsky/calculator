@@ -31,6 +31,6 @@ public interface ICalcService {
      * @param rpn
      * @return double
      */
-    Double calculateRpn(String rpn);
+    String calculateRpn(String rpn);
 
 }

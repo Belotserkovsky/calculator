@@ -6,60 +6,80 @@
 <head>
     <title>Registration</title>
     <link href="<c:url value="/assets/css/bootstrap.min.css"/>" rel="stylesheet" type="text/css"/>
-    <link href="<c:url value="/assets/css/bootstrap.css"/>" rel="stylesheet" type="text/css"/>
+    <link href="<c:url value="/assets/css/bootstrap-theme.min.css"/>" rel="stylesheet" type="text/css"/>
+    <script src="/assets/js/bootstrap.min.js"></script>
 </head>
-<body>
-<div style="float: right">
-    <a href="/user?new&locale=ru" style="padding: 5px">RU</a> | <a href="/user?new&locale=en" style="padding: 5px">EN</a>
+<br>
+<div style="text-align: right">
+    <a href="/calc/user?new&locale=ru" style="padding: 10px"><h4 class="h4">RU</h4></a> | <a href="/calc/user?new&locale=en" style="padding: 10px"><h4 class="h4">EN</h4></a>
 </div>
 <br>
-<p><spring:message code="registration.fill.fields"/>:</p>
+
 <c:url value="/calc/user?add" var="addUserUrl" />
+<c:url value="/calc/user/main" var="backUrl" />
 
 <div style="text-align: center">
-<sf:form method="POST" modelAttribute="user" action="${addUserUrl}">
-    <input type="hidden"  name="userId" value="${user.userId}"/>
-    <fieldset>
-        <table cellspacing="0">
-            <tr>
-                <th><label for="name"><spring:message code="registration.name"/></label></th>
-                <td>
-                    <sf:input id="name" type="text" value="${user.name}" path="name" size="30" placeholder="User Name"/><br/>
-                    <sf:errors path="name" cssStyle="color: red" />
-                </td>
-            </tr>
-            <tr>
-                <th><label for="email">Email</label></th>
-                <td>
-                    <sf:input id="email" type="text" value="${user.email}" path="email" placeholder="Email"/>
-                    <sf:errors path="email" cssStyle="color: red"/>
-                </td>
-            </tr>
-            <tr>
-                <th><label for="userName"><spring:message code="registration.userName"/></label></th>
-                <td>
-                    <sf:input id="userName" type="text" value="${user.userName}" path="userName" maxlength="20" placeholder="User Name"/>
-                    <small id="userName_msg"><spring:message code="registration.noSpaceCharacters"/></small><br/>
-                    <sf:errors path="userName" cssStyle="color: red"/>
-                </td>
-            </tr>
-            <tr>
-                <th><label for="password"><spring:message code="registration.password"/></label></th>
-                <td>
-                    <sf:input id="password" type="text" value="${user.password}" path="password" maxlength="20" placeholder="Password"/>
-                    <small id="password_msg"><spring:message code="registration.noSpaceCharacters"/></small><br/>
-                    <sf:errors path="password" cssStyle="color: red"/>
-                </td>
-            </tr>
-            <tr>
-                <th></th>
-                <td>
-                    <input id="button" type="submit" value="<spring:message code="registration.singUp"/>"/>
-                </td>
-            </tr>
-        </table>
-    </fieldset>
-</sf:form>
+    <h4 class="h4"><spring:message code="registration.page"/> (${name})</h4>
 </div>
+<hr>
+    <sf:form class="form-horizontal" modelAttribute="user" action="${addUserUrl}" method="POST">
+        <fieldset>
+            <div class="form-group">
+                <label class="col-sm-3 control-label" for="name" style="text-align: right"><spring:message code="registration.name"/></label>
+                <div class="col-sm-7">
+                <sf:input class="form-control" id="name" type="text" value="${user.name}" path="name" size="30" placeholder="Name"/>
+                <sf:errors path="name" cssStyle="color: red" />
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label class="col-sm-3 control-label" for="email" style="text-align: right">Email</label>
+            <div class="col-sm-7">
+                <sf:input class="form-control" id="email" type="text" value="${user.email}" path="email" placeholder="Email"/>
+                <sf:errors path="email" cssStyle="color: red"/>
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label class="col-sm-3 control-label" for="userName" style="text-align: right"><spring:message code="registration.userName"/></label>
+            <div class="col-sm-7">
+                <sf:input class="form-control" id="userName" type="text" value="${user.userName}" path="userName" maxlength="20" placeholder="User Name"/>
+                <span class="help-block" id="userName_msg"><spring:message code="registration.noSpaceCharacters"/></span>
+                <sf:errors path="userName" cssStyle="color: red"/>
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label class="col-sm-3 control-label" for="password"><spring:message code="registration.password"/></label>
+            <div class="col-sm-7">
+                <sf:input class="form-control" id="password" type="text" value="${user.password}" path="password" maxlength="20" placeholder="Password"/>
+                <span class="help-block" id="password_msg"><spring:message code="registration.noSpaceCharacters"/></span>
+                <sf:errors path="password" cssStyle="color: red"/>
+            </div>
+        </div>
+
+        <div class="form-group">
+            <div class="col-sm-offset-3 col-sm-2">
+                <button type="submit" class="btn btn-default"><spring:message code="registration.singUp"/></button>
+            </div>
+        </div>
+        <div class="form-group">
+            <div class="col-sm-offset-3 col-sm-2">
+                <button class="btn-link">
+                    <a href="${backUrl}"><spring:message code="registration.back"/></a>
+                </button>
+            </div>
+            </div>
+        </fieldset>
+    </sf:form>
+
+<div class="col-sm-7">
+    <c:if test="${param.fail != null}">
+        <div class="alert-warning" style="text-align: center">
+            <p><spring:message code="registration.fail"/></p>
+        </div>
+    </c:if>
+</div>
+
 </body>
 </html>

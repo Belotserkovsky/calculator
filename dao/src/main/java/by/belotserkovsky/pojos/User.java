@@ -19,18 +19,18 @@ public class User implements Serializable{
     @Size(max = 30, message = "Maximum length 30 symbols")
     private String name;
 
-    @Size(min = 3, max = 20, message = "Username must be between 3 and 20 characters long.")
+    @Size(min = 4, max = 20, message = "Username must be between 4 and 20 characters long.")
     @Pattern(regexp = "^[a-zA-Z0-9]+$", message = "Username must be alphanumeric with no spaces")
     private String userName;
 
-    @Size(min = 3, max = 10, message = "Username must be between 3 and 10 characters long.")
+    @Size(min = 4, max = 20, message = "Password must be between 4 and 20 characters long.")
     private String password;
 
     @Pattern(regexp = "[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+.[A-Za-z]{2,4}", message="Incorrect email address.")
     private String email;
 
     private String role;
-    private Set<History> CalcHistory;
+    private Set<History> calcHistory;
 
     public User() {
     }
@@ -77,7 +77,7 @@ public class User implements Serializable{
 
     @OneToMany(mappedBy = "user", cascade = CascadeType.ALL)
     public Set<History> getCalcHistory() {
-        return CalcHistory;
+        return calcHistory;
     }
 
     public void setUserId(Long userId) {
@@ -105,6 +105,6 @@ public class User implements Serializable{
     }
 
     public void setCalcHistory(Set<History> calcHistory) {
-        CalcHistory = calcHistory;
+        this.calcHistory = calcHistory;
     }
 }

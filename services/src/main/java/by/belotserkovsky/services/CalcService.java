@@ -62,10 +62,11 @@ public class CalcService implements ICalcService{
         return sOut.toString();
     }
 
-    public Double calculateRpn(String rpn){
+    public String calculateRpn(String rpn){
         double numberA;
         double numberB;
         String sTemp;
+        String result="";
 
         Stack<Double> stack = new Stack<Double>();
         StringTokenizer sRpn = new StringTokenizer(rpn);
@@ -94,7 +95,11 @@ public class CalcService implements ICalcService{
             log.error("The number of operands does not match the number of operations!");
         }
 
-        return stack.pop();
+        result = stack.pop().toString();
+        if(result.endsWith(".0")){
+            result = result.substring(0, (result.length()-2));
+        }
+        return result;
     }
 
 }

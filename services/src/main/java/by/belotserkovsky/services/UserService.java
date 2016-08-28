@@ -38,7 +38,7 @@ public class UserService implements IUserService{
             newUser.setUserName(user.getUserName());
             newUser.setPassword(user.getPassword());
             newUser.setEmail(user.getEmail());
-            return userDao.saveOrUpdate(user).getUserId();
+            return userDao.saveOrUpdate(newUser).getUserId();
         }
         else {
             user.setRole(Role.USER.getType());
@@ -47,5 +47,4 @@ public class UserService implements IUserService{
             return userDao.saveOrUpdate(user).getUserId();
         }
     }
-
 }
