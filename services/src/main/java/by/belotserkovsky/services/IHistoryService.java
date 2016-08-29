@@ -11,7 +11,7 @@ public interface IHistoryService {
 
     void saveHistory(String expression, String result, String userName);
 
-    List<History> getHistory(int offset, int numberOfRecords);
+    List<History> getUserHistory(int offset, int numberOfRecords, String userName);
 
-    int getRowsHistory();
+    int getRowsUserHistory(String userName);
 }

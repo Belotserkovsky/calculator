@@ -36,12 +36,12 @@ public class HistoryService implements IHistoryService{
     }
 
 
-    public List<History> getHistory(int offset, int numberOfRecords){
-        return historyDao.getAll(offset, numberOfRecords);
+    public List<History> getUserHistory(int offset, int numberOfRecords, String userName){
+        return historyDao.getByUser(offset, numberOfRecords, userName);
     }
 
-    public int getRowsHistory(){
-        return historyDao.getFoundRows();
+    public int getRowsUserHistory(String userName){
+        return historyDao.getFoundRows(userName);
     }
 
 }

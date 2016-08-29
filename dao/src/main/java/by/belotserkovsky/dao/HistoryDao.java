@@ -24,17 +24,16 @@ public class HistoryDao extends Dao<History> implements IHistoryDao {
         super(sessionFactory);
     }
 
-    public List<History> getAll(int offset, int numberOfRecords){
-        String hql = "FROM History";
-        List<History> all = getSession().createQuery(hql).setFirstResult(offset).setMaxResults(numberOfRecords).list();
+    public List<History> getByUser(int offset, int numberOfRecords, String userName){
+        String hql = "FROM History hitory WHERE user.userName=:userName";
+        List<History> all = getSession().createQuery(hql).setParameter("userName", userName).setFirstResult(offset).setMaxResults(numberOfRecords).list();
         log.info("Got all.");
         return all;
     }
 
-    public int getFoundRows(){
-        Criteria criteria = getSession().createCriteria(History.class);
-        criteria.setProjection(Projections.rowCount());
-        Long result = (Long)criteria.uniqueResult();
+    public int getFoundRows(String userName){
+        String hql = "SELECT count(history) FROM History history WHERE user.userName=:userName";
+        Long result = (Long)getSession().createQuery(hql).setParameter("userName", userName).uniqueResult();
         int foundRows = result.intValue();
         log.info("Got a number of rows.");
         return foundRows;

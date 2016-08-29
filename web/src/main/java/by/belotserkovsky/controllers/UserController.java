@@ -5,6 +5,7 @@ import by.belotserkovsky.pojos.User;
 import by.belotserkovsky.services.ICalcService;
 import by.belotserkovsky.services.IHistoryService;
 import by.belotserkovsky.services.IUserService;
+import by.belotserkovsky.services.exceptions.CalculationFailsException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
@@ -15,6 +16,7 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -49,12 +51,25 @@ public class UserController {
         return "main";
     }
 
+    @RequestMapping(value = "/main", method = RequestMethod.GET, params = "fail")
+    public String mainPage(ModelMap model){
+        String result = model.get("expression").toString();
+        model.addAttribute("result", result);
+        return "main";
+    }
+
     @RequestMapping(value = "/main", method = RequestMethod.POST, params = "calc")
-    public String calculate(ModelMap model,
-                            @RequestParam(value = "input") String original,
-                            Principal principal){
+    public String calculate(ModelMap model, @RequestParam(value = "input") String original,
+                            Principal principal,
+                            RedirectAttributes redirectAttributes){
         String sIn = calcService.transformToRpn(original);
-        String result = calcService.calculateRpn(sIn);
+        String result="";
+        try {
+            result = calcService.calculateRpn(sIn);
+        }catch (CalculationFailsException e){
+            redirectAttributes.addFlashAttribute("expression", original);
+            return "redirect:/calc/user/main?fail";
+        }
         historyService.saveHistory(original, result, principal.getName());
         model.addAttribute("expression", result);
         return "main";
@@ -100,14 +115,14 @@ public class UserController {
     }
 
     @RequestMapping(value = "/history", method = RequestMethod.GET, params = "page")
-    public String showHistory(ModelMap model, @RequestParam (value = "page") String page){
+    public String showHistory(ModelMap model, @RequestParam (value = "page") String page, Principal principal){
         int currentPage = 1;
         int recordsPerPage = 3;
         if(page.length() != 0) {
             currentPage = Integer.parseInt(page);
         }
-        int allRecords = historyService.getRowsHistory();
-        List<History> listHistory = historyService.getHistory((currentPage-1)*recordsPerPage, recordsPerPage);
+        List<History> listHistory = historyService.getUserHistory((currentPage-1)*recordsPerPage, recordsPerPage, principal.getName());
+        int allRecords = historyService.getRowsUserHistory(principal.getName());
         int numberOfPages = (int) Math.ceil((double)allRecords / recordsPerPage);
         model.addAttribute("listHistory", listHistory);
         model.addAttribute("numberOfPages", numberOfPages);
@@ -121,7 +136,6 @@ public class UserController {
         if (auth != null) {
             new SecurityContextLogoutHandler().logout(request, response, auth);
         }
-        session.invalidate();
         return "redirect:/calc/welcome?logout";
     }
 }

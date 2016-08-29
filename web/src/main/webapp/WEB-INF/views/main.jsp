@@ -23,11 +23,12 @@
     <c:url var="calcUrl" value="/calc/user/main?calc"/>
     <c:url var="logoutUrl" value="/calc/user/main?logout"/>
     <c:url var="editUrl" value="/calc/user/main?edit"/>
+    <c:url var="historyUrl" value="/calc/user/history?page"/>
 </head>
 <body>
 <br>
-<div style="text-align: right">
-    < href="/calc/user/main&locale=ru" style="padding: 10px"><h4 class="h4">RU</h4></a> | <a href="/calc/user/main&locale=en" style="padding: 10px"><h4 class="h4">EN</h4></a>
+<div style="text-align: center">
+    <a href="/calc/user/main&locale=ru" style="padding: 5px"><h5 class="h5">RU</h5></a> | <a href="/calc/user/main&locale=en" style="padding: 5px"><h5 class="h5">EN</h5></a>
 </div>
 <br>
 <div style="text-align: center">
@@ -74,13 +75,24 @@
     </form>
 
 <div class="col-sm-7">
-        <button class="btn-link" href="${logoutUrl}"><spring:message code="main.logout"/></button>
+    <spring:message code="welcome.userName"/> : ${user.name} |
+    <button class="btn-link"><a href="${editUrl}"><spring:message code="main.info"/></a></button>
 </div>
 
 <div class="col-sm-7">
-    <spring:message code="welcome.userName"/> : ${user.name} |
-    <button class="btn-link" href="${editUrl}"><spring:message code="main.info"/></button>
+    <button class="btn-link"><a href="${historyUrl}"><spring:message code="main.history"/></a></button>
 </div>
 
+<div class="col-sm-7">
+    <button class="btn-link"><a href="${logoutUrl}"><spring:message code="main.logout"/></a></button>
+</div>
+
+<div class="col-sm-6 col-md-4 col-md-offset-4">
+    <c:if test="${param.fail != null}">
+        <div class="alert-warning" style="text-align: center">
+            <p><spring:message code="main.calculation.fail"/></p>
+        </div>
+    </c:if>
+</div>
 </body>
 </html>

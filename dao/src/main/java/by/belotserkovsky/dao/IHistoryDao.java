@@ -15,11 +15,11 @@ public interface IHistoryDao extends IDao<History> {
      * @param numberOfRecords
      * @return List<User>
      */
-    List<History> getAll(int offset, int numberOfRecords);
+    List<History> getByUser(int offset, int numberOfRecords, String userName);
 
     /**
      * @return Number of rows in user's table (for pagination)
      */
-    int getFoundRows();
+    int getFoundRows(String userName);
 
 }

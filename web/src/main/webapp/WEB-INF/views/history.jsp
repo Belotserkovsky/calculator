@@ -12,8 +12,8 @@
 </head>
 <body>
 <br>
-<div style="text-align: right">
-    < href="/calc/user/history&locale=ru" style="padding: 10px"><h4 class="h4">RU</h4></a> | <a href="/calc/user/history&locale=en" style="padding: 10px"><h4 class="h4">EN</h4></a>
+<div style="text-align: center">
+    <a href="/calc/user/history&locale=ru" style="padding: 5px"><h4 class="h4">RU</h4></a> | <a href="/calc/user/history&locale=en" style="padding: 5px"><h4 class="h4">EN</h4></a>
 </div>
 <br>
 <div style="text-align: center">
@@ -28,7 +28,7 @@
         <th>Expression</th>
         <th>Result</th>
     </tr>
-    <c:forEach var="history" items="${historyList}">
+    <c:forEach var="history" items="${listHistory}">
         <tr>
             <td>${history.id}</td>
             <td>${history.creationDate}</td>

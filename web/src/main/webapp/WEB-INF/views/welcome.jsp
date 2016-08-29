@@ -11,7 +11,7 @@
 <body>
 
 <div style="text-align: center">
-    <a href="/calc/welcome?locale=ru" style="padding: 10px"><h4 class="h4">RU</h4></a> | <a href="/calc/welcome?locale=en" style="padding: 10px"><h4 class="h4">EN</h4></a>
+    <a href="/calc/welcome?locale=ru" style="padding: 5px"><h4 class="h4">RU</h4></a> | <a href="/calc/welcome?locale=en" style="padding: 5px"><h4 class="h4">EN</h4></a>
 </div>
 <br>
 

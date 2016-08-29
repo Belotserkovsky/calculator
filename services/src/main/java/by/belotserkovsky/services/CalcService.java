@@ -1,5 +1,6 @@
 package by.belotserkovsky.services;
 
+import by.belotserkovsky.services.exceptions.CalculationFailsException;
 import org.apache.log4j.Logger;
 import org.springframework.stereotype.Service;
 
@@ -62,11 +63,11 @@ public class CalcService implements ICalcService{
         return sOut.toString();
     }
 
-    public String calculateRpn(String rpn){
+    public String calculateRpn(String rpn) throws CalculationFailsException{
         double numberA;
         double numberB;
         String sTemp;
-        String result="";
+        String result;
 
         Stack<Double> stack = new Stack<Double>();
         StringTokenizer sRpn = new StringTokenizer(rpn);
@@ -76,6 +77,7 @@ public class CalcService implements ICalcService{
             if(sTemp.length() == 1 && isOperator(sTemp.charAt(0))){
                 if(stack.size() < 2){
                     log.error("Not enough data on the stack for the operation: " + sTemp);
+                    throw new CalculationFailsException ();
                 }
                 numberB = stack.pop();
                 numberA = stack.pop();
@@ -93,6 +95,7 @@ public class CalcService implements ICalcService{
         }
         if(stack.size() > 1){
             log.error("The number of operands does not match the number of operations!");
+            throw new CalculationFailsException ();
         }
 
         result = stack.pop().toString();

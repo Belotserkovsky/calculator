@@ -1,5 +1,7 @@
 package by.belotserkovsky.services;
 
+import by.belotserkovsky.services.exceptions.CalculationFailsException;
+
 /**
  * Created by K.Belotserkovsky
  */
@@ -31,6 +33,6 @@ public interface ICalcService {
      * @param rpn
      * @return double
      */
-    String calculateRpn(String rpn);
+    String calculateRpn(String rpn) throws CalculationFailsException;
 
 }
