@@ -10,8 +10,8 @@
     <script src="/assets/js/bootstrap.min.js"></script>
 </head>
 <br>
-<div style="text-align: center">
-    <a href="/calc/user?new&locale=ru" style="padding: 5px"><h5 class="h5">RU</h5></a> | <a href="/calc/user?new&locale=en" style="padding: 5px"><h5 class="h5">EN</h5></a>
+<div style="text-align: right">
+    <h4 class="h4"><a href="/calc/user?new&locale=ru" style="padding: 5px">RU</a> | <a href="/calc/user?new&locale=en" style="padding: 5px">EN</a></h4>
 </div>
 <br>
 

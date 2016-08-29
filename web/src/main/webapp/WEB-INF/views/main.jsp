@@ -17,75 +17,74 @@
         #calculator table td {border-spacing: 3px;}
         input.display {width: 166px; text-align: right;}
         td.buttons {border-top: solid 1px silver;}
-        input[type= button] {width: 40px; height: 30px;}
+        input[type= button] {width: 60px; height: 60px;}
     </style>
-
-    <c:url var="calcUrl" value="/calc/user/main?calc"/>
-    <c:url var="logoutUrl" value="/calc/user/main?logout"/>
-    <c:url var="editUrl" value="/calc/user/main?edit"/>
-    <c:url var="historyUrl" value="/calc/user/history?page"/>
 </head>
 <body>
+
+<c:url var="calcUrl" value="/calc/user/main?calc"/>
+<c:url var="logoutUrl" value="/calc/user/main?logout"/>
+<c:url var="editUrl" value="/calc/user/main?edit"/>
+<c:url var="historyUrl" value="/calc/user/history?page"/>
+<c:url var="localeRu" value="/calc/user/main&locale=ru"/>
+<c:url var="localeEn" value="/calc/user/main&locale=en"/>
+
+<nav class="navbar navbar-default">
+    <div class="container-fluid">
+        <div class="collapse navbar-collapse" id="navbar">
+            <ul class="nav navbar-nav navbar-left">
+                <li>
+                    <p class="navbar-text">${user.name}</p>
+                </li>
+                <li>
+                    <a href="${editUrl}"><spring:message code="main.info"/></a>
+                </li>
+                <li>
+                    <a href="${historyUrl}"><spring:message code="history.page"/></a>
+                </li>
+            </ul>
+            <ul class="nav navbar-nav navbar-right">
+                <li><a href="${localeRu}" style="padding: 5px">RU</a></li>
+                <li><a href="${localeEn}" style="padding: 5px">EN</a></li>
+                <li><a href="${logoutUrl}"><spring:message code="main.logout"/></a></li>
+            </ul>
+        </div>
+    </div>
+</nav>
 <br>
-<div style="text-align: center">
-    <a href="/calc/user/main&locale=ru" style="padding: 5px"><h5 class="h5">RU</h5></a> | <a href="/calc/user/main&locale=en" style="padding: 5px"><h5 class="h5">EN</h5></a>
-</div>
-<br>
-<div style="text-align: center">
-    <h4 class="h4"><spring:message code="main.page"/></h4>
-</div>
-<hr>
-    <form class="form-horizontal" name="calc" id="calculator" modelAttribute="expression" method="post" action="${calcUrl}">
-        <fieldset>
-            <div class="form-group">
-                <input type="hidden" name="userName" value="${userName}"/>
-                <table style="align-items: center">
-                    <tr>
-                        <td>
-                            <input class="form-control" style="text-align: right" type="text" name="input" value="${expression}"
-                                   size="16" class="display" autocomplete="off" pattern="[+-*/][0-9]" required readonly>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td class="buttons">
-                            <input type="button" class="btn" name="one" value="1" onclick="calc.input.value += '1'">
-                            <input type="button" class="btn" name="two" value="2" onclick="calc.input.value += '2'">
-                            <input type="button" class="btn" name="three" value="3" onclick="calc.input.value += '3'">
-                            <input type="button" class="btn" name="add" value="+" onclick="calc.input.value += '+'">
-                            <br>
-                            <input type="button"  class="btn" name="four" value="4" onclick="calc.input.value += '4'">
-                            <input type="button" class="btn" name="five" value="5" onclick="calc.input.value += '5'">
-                            <input type="button" class="btn" name="six" value="6" onclick="calc.input.value += '6'">
-                            <input type="button" class="btn" name="sub" value="-" onclick="calc.input.value += '-'">
-                            <br>
-                            <input type="button" class="btn" name="seven" value="7" onclick="calc.input.value += '7'">
-                            <input type="button" class="btn" name="eight" value="8" onclick="calc.input.value += '8'">
-                            <input type="button" class="btn" name="nine" value="9" onclick="calc.input.value += '9'">
-                            <input type="button" class="btn" name="mul" value="x" onclick="calc.input.value += '*'">
-                            <br>
-                            <input type="button" class="btn" name="clear" value="c" onclick="calc.input.value = ''">
-                            <input type="button" class="btn" name="zero" value="0" onclick="calc.input.value += '0'">
-                            <input type="button" class="btn" name="res" value="=" onclick="submitForm()">
-                            <input type="button" class="btn" name="div"  value="/" onclick="calc.input.value += '/'">
-                        </td>
-                    </tr>
-                </table>
-            </div>
-        </fieldset>
-    </form>
-
-<div class="col-sm-7">
-    <spring:message code="welcome.userName"/> : ${user.name} |
-    <button class="btn-link"><a href="${editUrl}"><spring:message code="main.info"/></a></button>
-</div>
-
-<div class="col-sm-7">
-    <button class="btn-link"><a href="${historyUrl}"><spring:message code="main.history"/></a></button>
-</div>
-
-<div class="col-sm-7">
-    <button class="btn-link"><a href="${logoutUrl}"><spring:message code="main.logout"/></a></button>
-</div>
+<form class="form-horizontal" name="calc" id="calculator" modelAttribute="expression" method="post" action="${calcUrl}">
+    <table class="table" style="border: 1px solid; width: 254px">
+        <tr>
+            <td>
+                <input class="form-control" style="width: 254px; text-align: right" type="text" name="input" value="${expression}"
+                       size="16" class="display" autocomplete="off" pattern="[+-*/][0-9]" required readonly>
+            </td>
+        </tr>
+        <tr>
+            <td class="buttons" style="border: 1px solid; width: auto">
+                <input type="button" name="one" value="1" onclick="calc.input.value += '1'">
+                <input type="button" name="two" value="2" onclick="calc.input.value += '2'">
+                <input type="button" name="three" value="3" onclick="calc.input.value += '3'">
+                <input type="button" name="add" value="+" onclick="calc.input.value += '+'">
+                <br>
+                <input type="button" name="four" value="4" onclick="calc.input.value += '4'">
+                <input type="button" name="five" value="5" onclick="calc.input.value += '5'">
+                <input type="button" name="six" value="6" onclick="calc.input.value += '6'">
+                <input type="button" name="sub" value="-" onclick="calc.input.value += '-'">
+                <br>
+                <input type="button" name="seven" value="7" onclick="calc.input.value += '7'">
+                <input type="button" name="eight" value="8" onclick="calc.input.value += '8'">
+                <input type="button" name="nine" value="9" onclick="calc.input.value += '9'">
+                <input type="button" name="mul" value="x" onclick="calc.input.value += '*'">
+                <br>
+                <input type="button" name="clear" value="c" onclick="calc.input.value = ''">
+                <input type="button" name="zero" value="0" onclick="calc.input.value += '0'">
+                <input type="button" name="res" value="=" onclick="submitForm()">
+                <input type="button" name="div"  value="/" onclick="calc.input.value += '/'">
+            </td>
+        </tr>
+    </table>
+</form>
 
 <div class="col-sm-6 col-md-4 col-md-offset-4">
     <c:if test="${param.fail != null}">

@@ -13,7 +13,7 @@
 <body>
 <br>
 <div style="text-align: center">
-    <a href="/calc/user/history&locale=ru" style="padding: 5px"><h4 class="h4">RU</h4></a> | <a href="/calc/user/history&locale=en" style="padding: 5px"><h4 class="h4">EN</h4></a>
+    <h4 class="h4"><a href="/calc/user/history&locale=ru" style="padding: 5px">RU</a> | <a href="/calc/user/history&locale=en" style="padding: 5px">EN</a></h4>
 </div>
 <br>
 <div style="text-align: center">
