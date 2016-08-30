@@ -77,7 +77,7 @@ public class UserController {
 
     /**
      * @param model
-     * mapping "/user?new"
+     * mapping "/user/new"
      * @return String page
      */
     @RequestMapping(value = "/new", method = RequestMethod.GET)

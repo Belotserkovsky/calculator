@@ -11,14 +11,17 @@
 <body>
 
 <div style="text-align: right">
-    <h4 class="h4"><a href="/calc/welcome?locale=ru" style="padding: 5px">RU</a> | <a href="/calc/welcome?locale=en" style="padding: 5px">EN</a></h4>
+    <c:url value="/calc/welcome&locale=ru" var="localeRu"/>
+    <c:url value="/calc/welcome&locale=en" var="localeEn"/>
+    <h4 class="h4"><a href="${localeRu}" style="padding: 5px">RU</a> | <a href="${localeEn}" style="padding: 5px">EN</a></h4>
 </div>
 <br>
-
-<c:url value="/calc/j_spring_security_check" var="loginUrl" />
-<c:url var="regUrl" value="/calc/user/new"/>
+<div style="text-align: center">
+    <h4 class="h4"><spring:message code="welcome.page"/></h4>
+</div>
 
 <div class="col-sm-6 col-md-4 col-md-offset-4">
+    <c:url value="/calc/j_spring_security_check" var="loginUrl"/>
     <form class="form-horizontal" action="${loginUrl}" method="POST">
         <div class="form-group">
             <label class="col-sm-3 control-label" for="uName" style="text-align: right"><spring:message code="welcome.userName"/></label>
@@ -47,6 +50,7 @@
             </div>
             <div class="col-sm-3">
                 <button class="btn-link">
+                    <c:url var="regUrl" value="/calc/user/new"/>
                     <a href="${regUrl}"><spring:message code="welcome.register"/></a>
                 </button>
             </div>

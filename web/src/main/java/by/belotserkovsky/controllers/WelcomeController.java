@@ -13,7 +13,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 public class WelcomeController {
     /**
      * @return String page
-     * mapping "/home"
+     * mapping "/welcome"
      */
     @RequestMapping(method = RequestMethod.GET)
     public String welcomePage(){
@@ -31,7 +31,7 @@ public class WelcomeController {
 
     /**
      * @return String page
-     * mapping "/login?logn"
+     * mapping "/welcome?login"
      */
     @RequestMapping(method = RequestMethod.GET, params = "login")
     public String loginAfterRegister() {
@@ -40,7 +40,7 @@ public class WelcomeController {
 
     /**
      * @return String page
-     * mapping "/home?loginFail"
+     * mapping "/welcome?loginFail"
      */
     @RequestMapping(method = RequestMethod.GET, params = "loginFail")
     public String accessDenied(){

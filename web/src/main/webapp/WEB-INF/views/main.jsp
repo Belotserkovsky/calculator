@@ -30,7 +30,7 @@
                 <div class="collapse navbar-collapse" id="navbar">
                     <ul class="nav navbar-nav navbar-left">
                         <li>
-                            <p class="navbar-text">${user.name}</p>
+                            <p class="navbar-text" style="font-style: italic">${user.name}</p>
                         </li>
                         <li>
                             <c:url var="editUrl" value="/calc/user/main?edit"/>
@@ -40,22 +40,23 @@
                             <c:url var="historyUrl" value="/calc/user/history?page"/>
                             <a href="${historyUrl}"><spring:message code="history.page"/></a>
                         </li>
+                        <li>
+                            <c:url var="logoutUrl" value="/calc/user/main?logout"/>
+                            <a href="${logoutUrl}"><spring:message code="main.logout"/></a>
+                        </li>
                     </ul>
                     <ul class="nav navbar-nav navbar-right">
                         <c:url var="localeRu" value="/calc/user/main&locale=ru"/>
-                        <li><a href="${localeRu}" style="padding: 5px">RU</a></li>
+                        <li><a href="${localeRu}">RU</a></li>
 
                         <c:url var="localeEn" value="/calc/user/main&locale=en"/>
-                        <li><a href="${localeEn}" style="padding: 5px">EN</a></li>
-
-                        <c:url var="logoutUrl" value="/calc/user/main?logout"/>
-                        <li><a href="${logoutUrl}"><spring:message code="main.logout"/></a></li>
+                        <li><a href="${localeEn}">| EN</a></li>
                     </ul>
                 </div>
             </div>
         </nav>
     </header>
-    <section>
+    <section id="sectionMain">
         <c:url var="calcUrl" value="/calc/user/main?calc"/>
         <form class="form-horizontal" name="calc" id="calculator" modelAttribute="expression" method="post" action="${calcUrl}">
             <table class="table" style="border: 1px solid; width: 254px">
@@ -90,19 +91,19 @@
                 </tr>
             </table>
         </form>
+
+        <div class="text-center">
+            <c:if test="${param.fail != null}">
+                <div class="alert-warning" style="text-align: center">
+                    <p><spring:message code="main.calculation.fail"/></p>
+                </div>
+            </c:if>
+        </div>
     </section>
 </div>
-
 <footer>
     <div id="footer">Developed by K. Belotserkovsky, 2016</div>
 </footer>
 
-<div class="col-sm-6 col-md-4 col-md-offset-4">
-    <c:if test="${param.fail != null}">
-        <div class="alert-warning" style="text-align: center">
-            <p><spring:message code="main.calculation.fail"/></p>
-        </div>
-    </c:if>
-</div>
 </body>
 </html>

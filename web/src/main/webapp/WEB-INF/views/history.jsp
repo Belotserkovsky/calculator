@@ -13,7 +13,9 @@
 <body>
 <br>
 <div style="text-align: center">
-    <h4 class="h4"><a href="/calc/user/history&locale=ru" style="padding: 5px">RU</a> | <a href="/calc/user/history&locale=en" style="padding: 5px">EN</a></h4>
+    <c:url var="localeRu" value="/calc/user/history?page&locale=ru"/>
+    <c:url var="localeEn" value="/calc/user/history?page&locale=en"/>
+    <h4 class="h4"><a href="${localeRu}">RU</a> | <a href="${localeEn}" style="padding: 5px">EN</a></h4>
 </div>
 <br>
 <div style="text-align: center">

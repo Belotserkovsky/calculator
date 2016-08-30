@@ -16,21 +16,29 @@ header {
     padding: 20px 0;
 }
 
-section {
-    margin-left: 280px;
-    padding-bottom: 50px;
+#sectionMain {
+    margin-left: 350px;
+    padding-bottom: 1px;
+ }
+
+#sectionReg {
+    margin-left: 100px;
+    margin-right: 100px;
+    padding-bottom: inherit;
 }
 
+
 footer {
-    background: #7e7e7e;
-    color: #dbdbdb;
-    font-size: 11px;
+    background: #efe9e9;
+    color: #968e8e;
+    font-size: 13px;
 }
 
 #footer {
     max-width: 960px;
-    margin: 300px;
-    padding: 10px 0;
-    height: 10px;
+    margin: 100px;
+    padding: 7px 0;
+    height: 29px;
     text-align: center;
+    font-style: italic;
 }
