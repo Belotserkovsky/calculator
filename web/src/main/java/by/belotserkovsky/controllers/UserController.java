@@ -107,7 +107,7 @@ public class UserController {
         return "redirect:/calc/welcome?login";
     }
 
-    @RequestMapping(value = "/main", method = RequestMethod.POST, params = "edit")
+    @RequestMapping(value = "/main", method = RequestMethod.GET, params = "edit")
     public String editUserInfo(ModelMap model, Principal principal){
         User user = userService.getUserByUserName(principal.getName());
         model.addAttribute("user", user);

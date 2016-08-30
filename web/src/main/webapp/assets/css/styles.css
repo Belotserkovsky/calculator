@@ -1,0 +1,36 @@
+/*Main styles*/
+
+body {
+    color: #8f8f8f;
+    background-color: #f8f8f8;
+    border-top: 5px solid #7e7e7e;
+    margin: 0;
+}
+
+#wrapper {
+    max-width: 960px;
+    margin: auto;
+}
+
+header {
+    padding: 20px 0;
+}
+
+section {
+    margin-left: 280px;
+    padding-bottom: 50px;
+}
+
+footer {
+    background: #7e7e7e;
+    color: #dbdbdb;
+    font-size: 11px;
+}
+
+#footer {
+    max-width: 960px;
+    margin: 300px;
+    padding: 10px 0;
+    height: 10px;
+    text-align: center;
+}
