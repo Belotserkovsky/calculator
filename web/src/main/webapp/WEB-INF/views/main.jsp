@@ -12,14 +12,6 @@
     <script src="/assets/js/bootstrap.min.js"></script>
     <script src="/assets/js/submitForm.js"></script>
 
-    <style type="text/css">
-        #calculator * {font-size: 16px;}
-        #calculator table {border: solid 3px #dddddd; border-spacing: 3px; background-color: #fafafa; }
-        #calculator table td {border-spacing: 3px;}
-        input.display {width: 166px; text-align: right;}
-        td.buttons {border-top: solid 1px silver;}
-        input[type= button] {width: 60px; height: 60px;}
-    </style>
 </head>
 <body>
 
@@ -46,11 +38,8 @@
                         </li>
                     </ul>
                     <ul class="nav navbar-nav navbar-right">
-                        <c:url var="localeRu" value="/calc/user/main&locale=ru"/>
-                        <li><a href="${localeRu}">RU</a></li>
-
-                        <c:url var="localeEn" value="/calc/user/main&locale=en"/>
-                        <li><a href="${localeEn}">| EN</a></li>
+                        <li><a href="/calc/user/main&locale=ru">RU</a></li>
+                        <li><a href="/calc/user/main&locale=en">EN</a></li>
                     </ul>
                 </div>
             </div>

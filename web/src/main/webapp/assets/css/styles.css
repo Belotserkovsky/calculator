@@ -3,8 +3,9 @@
 body {
     width: 100%;
     color: #8f8f8f;
-    background-color: #f8f8f8;
+    background-color: rgba(171, 171, 171, 0.06);
     border-top: 5px solid #7e7e7e;
+    border-bottom: 5px solid #7e7e7e;
     margin: 0;
 }
 
@@ -22,28 +23,56 @@ header {
     padding-bottom: 1px;
  }
 
-#sectionReg {
+#section1 {
     margin-left: 100px;
     margin-right: 100px;
     padding-bottom: inherit;
 }
 
+#section2 {
+    margin-left: 50px;
+    margin-right: 50px;
+    padding-bottom: inherit;
+}
 
 footer {
-    /*font-size: 13px;*/
+    margin-top: 100px;
     text-align: center;
 }
 
 #footer {
-    /*max-width: 960px;*/
-    /*margin: 100px;*/
-    /*padding: 7px 0;*/
-    /*height: 29px;*/
-    background: #efe9e9;
     color: #968e8e;
     border-top: 1px solid #dddddd;
     padding: 1px 0;
     font-size: 0.9em;
     margin-bottom: 0;
     font-style: italic;
+}
+
+#calculator * {
+    font-size: 16px;
+}
+
+#calculator table {
+    border: solid 3px #dddddd; border-spacing: 3px; background-color: #fafafa;
+}
+
+#calculator table td {
+    border-spacing: 3px;
+}
+
+input.display {
+    width: 166px; text-align: right;
+}
+
+td.buttons {
+    border-top: solid 1px silver;
+}
+
+input[type= button] {
+    width: 60px; height: 60px;
+}
+
+#tHistory.td {
+    width: 20px;
 }

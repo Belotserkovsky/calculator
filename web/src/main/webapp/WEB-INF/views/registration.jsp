@@ -30,24 +30,21 @@
                         </li>
                     </ul>
                     <ul class="nav navbar-nav navbar-right">
-                        <c:url value="/calc/user/new&locale=ru" var="localeRu"/>
-                        <li><a href="${localeRu}">RU</a></li>
-
-                        <c:url value="/calc/user/new&locale=en" var="localeEn"/>
-                        <li><a href="${localeEn}">| EN</a></li>
+                        <li><a href="/calc/user/new&locale=ru">RU</a></li>
+                        <li>|</li>
+                        <li><a href="/calc/user/new&locale=en">EN</a></li>
                     </ul>
                 </div>
             </div>
         </nav>
     </header>
-    <section id="sectionReg">
+    <section id="section1">
         <div style="text-align: center">
             <h4 class="h4"><spring:message code="registration.page"/></h4>
         </div>
         <hr>
         <c:url value="/calc/user?add" var="addUserUrl" />
         <sf:form class="form-horizontal" modelAttribute="user" action="${addUserUrl}" method="POST">
-            <%--<fieldset>--%>
                 <div class="form-group">
                     <label class="col-sm-3 control-label" for="name" style="text-align: right"><spring:message code="registration.name"/></label>
                     <div class="col-sm-7">
@@ -95,7 +92,6 @@
                         </button>
                     </div>
                 </div>
-            <%--</fieldset>--%>
         </sf:form>
 
         <div class="text-center">
@@ -107,8 +103,6 @@
         </div>
     </section>
 </div>
-<footer>
-    <div id="footer">Developed by K. Belotserkovsky, 2016</div>
-</footer>
+<footer><div id="footer">Developed by K. Belotserkovsky, 2016</div></footer>
 </body>
 </html>
