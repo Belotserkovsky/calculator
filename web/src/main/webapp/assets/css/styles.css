@@ -1,6 +1,7 @@
 /*Main styles*/
 
 body {
+    width: 100%;
     color: #8f8f8f;
     background-color: #f8f8f8;
     border-top: 5px solid #7e7e7e;
@@ -29,16 +30,20 @@ header {
 
 
 footer {
-    background: #efe9e9;
-    color: #968e8e;
-    font-size: 13px;
+    /*font-size: 13px;*/
+    text-align: center;
 }
 
 #footer {
-    max-width: 960px;
-    margin: 100px;
-    padding: 7px 0;
-    height: 29px;
-    text-align: center;
+    /*max-width: 960px;*/
+    /*margin: 100px;*/
+    /*padding: 7px 0;*/
+    /*height: 29px;*/
+    background: #efe9e9;
+    color: #968e8e;
+    border-top: 1px solid #dddddd;
+    padding: 1px 0;
+    font-size: 0.9em;
+    margin-bottom: 0;
     font-style: italic;
 }
