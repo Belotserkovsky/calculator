@@ -19,7 +19,7 @@
     <div id="wrapper">
         <section id="section1">
             <div style="text-align: center">
-                <h4 class="h4"><spring:message code="welcome.page"/></h4>
+                <h4 class="h4"><spring:message code="welcome"/></h4>
             </div>
             <hr>
             <c:url value="/calc/j_spring_security_check" var="loginUrl"/>

@@ -35,7 +35,6 @@ public class UserService implements IUserService{
         if(userId != null){
             User newUser = userDao.get(User.class, userId);
             newUser.setName(user.getName());
-            newUser.setUserName(user.getUserName());
             newUser.setPassword(user.getPassword());
             newUser.setEmail(user.getEmail());
             return userDao.saveOrUpdate(newUser).getUserId();

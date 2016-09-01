@@ -82,35 +82,35 @@ public class UserController {
      */
     @RequestMapping(value = "/new", method = RequestMethod.GET)
     public String register(ModelMap model){
-        User user = new User();
-        model.addAttribute("user", user);
+        User mUser = new User();
+        model.addAttribute("mUser", mUser);
         return "registration";
     }
 
     @RequestMapping(value = "/new", method = RequestMethod.GET, params = "fail")
     public String registerFail(ModelMap model){
-        User user = new User();
-        model.addAttribute("user", user);
+        User mUser = new User();
+        model.addAttribute("mUser", mUser);
         return "registration";
     }
 
     @RequestMapping(method = RequestMethod.POST, params = "add")
-    public String addUser(@Valid User user, BindingResult br) {
+    public String addUser(@Valid User mUser, BindingResult br) {
         if(br.hasErrors()){
             return "registration";
         }
-        User uTemp = userService.getUserByUserName(user.getUserName());
+        User uTemp = userService.getUserByUserName(mUser.getUserName());
         if(uTemp != null){
             return "redirect:/calc/user/new?fail";
         }
-        userService.createOrUpdateUser(user);
+        userService.createOrUpdateUser(mUser);
         return "redirect:/calc/welcome?login";
     }
 
     @RequestMapping(value = "/main", method = RequestMethod.GET, params = "edit")
     public String editUserInfo(ModelMap model, Principal principal){
-        User user = userService.getUserByUserName(principal.getName());
-        model.addAttribute("user", user);
+        User mUser = userService.getUserByUserName(principal.getName());
+        model.addAttribute("mUser", mUser);
         return "registration";
     }
 
@@ -131,7 +131,7 @@ public class UserController {
     }
 
     @RequestMapping(value = "/main", method = RequestMethod.GET, params = "logout")
-    public String logoutPage (HttpServletRequest request, HttpServletResponse response, HttpSession session) {
+    public String logoutPage (HttpServletRequest request, HttpServletResponse response) {
         Authentication auth = SecurityContextHolder.getContext().getAuthentication();
         if (auth != null) {
             new SecurityContextLogoutHandler().logout(request, response, auth);
