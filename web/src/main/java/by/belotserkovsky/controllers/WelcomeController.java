@@ -32,12 +32,8 @@ public class WelcomeController {
      * mapping /welcome?logout
      */
     @RequestMapping(method = RequestMethod.GET, params = "logout")
-    public String logoutPage (HttpServletRequest request, HttpServletResponse response) {
-        Authentication auth = SecurityContextHolder.getContext().getAuthentication();
-        if (auth != null) {
-            new SecurityContextLogoutHandler().logout(request, response, auth);
-        }
-        return "redirect:/calc/welcome?logout";
+    public String logoutPage () {
+        return "welcome";
     }
 
     /**
