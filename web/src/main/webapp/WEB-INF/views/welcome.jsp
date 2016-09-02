@@ -70,7 +70,7 @@
                 </c:if>
                 <c:if test="${param.login != null}">
                     <div class="alert-success" style="text-align: center">
-                        <p><spring:message code="loginSuccess"/></p>
+                        <p><spring:message code="registrationSuccess"/></p>
                     </div>
                 </c:if>
                 <c:if test="${param.loginFail != null}">
