@@ -26,20 +26,22 @@
                         </li>
                         <li>
                             <c:url var="editUrl" value="/calc/user/main?edit"/>
-                            <a href="${editUrl}"><spring:message code="main.info"/></a>
+                            <a href="${editUrl}"><spring:message code="userInfo"/></a>
                         </li>
                         <li>
                             <c:url var="historyUrl" value="/calc/user/history?page"/>
-                            <a href="${historyUrl}"><spring:message code="history.page"/></a>
+                            <a href="${historyUrl}"><spring:message code="historyPage"/></a>
                         </li>
                         <li>
                             <c:url var="logoutUrl" value="/calc/user/main?logout"/>
-                            <a href="${logoutUrl}"><spring:message code="main.logout"/></a>
+                            <a href="${logoutUrl}"><spring:message code="logout"/></a>
                         </li>
                     </ul>
                     <ul class="nav navbar-nav navbar-right">
-                        <li><a href="/calc/user/main&locale=ru">RU</a></li>
-                        <li><a href="/calc/user/main&locale=en">EN</a></li>
+                        <c:url var="localeRu" value="/calc/user/main&locale=ru"/>
+                        <li><a href="${localeRu}">RU</a></li>
+                        <c:url var="localeEn" value="/calc/user/main&locale=en"/>
+                        <li><a href="${localeEn}">EN</a></li>
                     </ul>
                 </div>
             </div>
@@ -48,15 +50,15 @@
     <section id="sectionMain">
         <c:url var="calcUrl" value="/calc/user/main?calc"/>
         <form class="form-horizontal" name="calc" id="calculator" modelAttribute="expression" method="post" action="${calcUrl}">
-            <table class="table" style="border: 1px solid; width: 254px">
+            <table class="table">
                 <tr>
                     <td>
-                        <input class="form-control" style="width: 254px; text-align: right" type="text" name="input" value="${expression}"
-                               size="16" class="display" autocomplete="off" pattern="[+-*/][0-9]" required readonly>
+                        <input class="form-control" id="inputExpr" type="text" name="input" value="${expression}"
+                               size="16" autocomplete="off" required readonly>
                     </td>
                 </tr>
                 <tr>
-                    <td class="buttons" style="border: 1px solid; width: auto">
+                    <td class="buttons">
                         <input type="button" name="one" value="1" onclick="calc.input.value += '1'">
                         <input type="button" name="two" value="2" onclick="calc.input.value += '2'">
                         <input type="button" name="three" value="3" onclick="calc.input.value += '3'">
@@ -84,15 +86,12 @@
         <div class="text-center">
             <c:if test="${param.fail != null}">
                 <div class="alert-warning" style="text-align: center">
-                    <p><spring:message code="main.calculation.fail"/></p>
+                    <p><spring:message code="calculationFail"/></p>
                 </div>
             </c:if>
         </div>
     </section>
+    <footer><div id="footer">Developed by K. Belotserkovsky, 2016</div></footer>
 </div>
-<footer>
-    <div id="footer">Developed by K. Belotserkovsky, 2016</div>
-</footer>
-
 </body>
 </html>

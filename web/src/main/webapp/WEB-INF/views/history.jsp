@@ -23,11 +23,15 @@
                         </li>
                         <li>
                             <c:url var="editUrl" value="/calc/user/main?edit"/>
-                            <a href="${editUrl}"><spring:message code="main.info"/></a>
+                            <a href="${editUrl}"><spring:message code="userInfo"/></a>
+                        </li>
+                        <li>
+                            <c:url var="mainUrl" value="/calc/user/main"/>
+                            <a href="${mainUrl}"><spring:message code="mainPage"/></a>
                         </li>
                         <li>
                             <c:url var="logoutUrl" value="/calc/user/main?logout"/>
-                            <a href="${logoutUrl}"><spring:message code="main.logout"/></a>
+                            <a href="${logoutUrl}"><spring:message code="logout"/></a>
                         </li>
                     </ul>
                     <ul class="nav navbar-nav navbar-right">
@@ -42,7 +46,7 @@
     </header>
     <section id="section2">
         <table class="table table-striped">
-            <caption><spring:message code="history.page"/></caption>
+            <caption><spring:message code="history"/></caption>
             <tr>
                 <th>ID</th>
                 <th>Creation date</th>
@@ -93,8 +97,7 @@
             </ul>
         </nav>
     </section>
+    <footer><div id="footer">Developed by K. Belotserkovsky, 2016</div></footer>
 </div>
-<footer><div id="footer">Developed by K. Belotserkovsky, 2016</div></footer>
-
 </body>
 </html>
