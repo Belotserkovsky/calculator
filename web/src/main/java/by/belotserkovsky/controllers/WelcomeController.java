@@ -19,8 +19,8 @@ import javax.servlet.http.HttpSession;
 @RequestMapping(value = "/calc/welcome")
 public class WelcomeController {
     /**
-     * @return String page
-     * mapping "/welcome"
+     * @return page "welcome"
+     * mapping "/calc/welcome"
      */
     @RequestMapping(method = RequestMethod.GET)
     public String welcomePage(){
@@ -28,8 +28,8 @@ public class WelcomeController {
     }
 
     /**
-     * @return String page
-     * mapping /welcome?logout
+     * @return page "welcome"
+     * mapping /calc/welcome?logout
      */
     @RequestMapping(method = RequestMethod.GET, params = "logout")
     public String logoutPage () {
@@ -37,16 +37,20 @@ public class WelcomeController {
     }
 
     /**
-     * @return String page
+     * @return page "welcome"
      * mapping "/welcome?login"
      */
     @RequestMapping(method = RequestMethod.GET, params = "login")
-    public String loginAfterRegister() {
+    public String loginAfterRegister(HttpServletRequest request, HttpServletResponse response) {
+        Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+        if (auth != null) {
+            new SecurityContextLogoutHandler().logout(request, response, auth);
+        }
         return "welcome";
     }
 
     /**
-     * @return String page
+     * @return page "welcome"
      * mapping "/welcome?loginFail"
      */
     @RequestMapping(method = RequestMethod.GET, params = "loginFail")

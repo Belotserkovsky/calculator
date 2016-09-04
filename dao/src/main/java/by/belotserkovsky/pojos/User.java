@@ -16,17 +16,16 @@ public class User implements Serializable{
 
     private Long userId;
 
-    @Size(max = 30, message = "Maximum length 30 symbols")
+    @Size(min = 3, message = "Name must be min 3 characters long.")
     private String name;
 
-    @Size(min = 4, max = 20, message = "Username must be between 4 and 20 characters long.")
-    @Pattern(regexp = "^[a-zA-Z0-9]+$", message = "Username must be alphanumeric with no spaces")
+    @Size(min = 3, max = 20, message = "Username must be between 3 and 20 characters long.")
     private String userName;
 
-    @Size(min = 4, max = 20, message = "Password must be between 4 and 20 characters long.")
+    @Size(min = 3, message = "Password must be min 3 characters long.")
     private String password;
 
-    @Pattern(regexp = "[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+.[A-Za-z]{2,4}", message="Incorrect email address.")
+    @Pattern(regexp = "[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+.[A-Za-z]{2,4}", message="Incorrect email address! example@mail.com")
     private String email;
 
     private String role;

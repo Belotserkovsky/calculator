@@ -21,7 +21,7 @@
                         <li>
                             <p class="navbar-text" style="font-style: italic">
                                 <c:choose>
-                                <c:when test="${user.name != null}">${user.name}</c:when>
+                                <c:when test="${sessionUserName != null}">${sessionUserName}</c:when>
                                     <c:otherwise><spring:message code="guest"/></c:otherwise>
                                 </c:choose>
                         </li>
@@ -31,8 +31,8 @@
                         </li>
                     </ul>
                     <ul class="nav navbar-nav navbar-right">
-                        <li><a href="/calc/user/new&locale=ru">RU</a></li>
-                        <li><a href="/calc/user/new&locale=en">EN</a></li>
+                        <li><a href="/calc/user/new?locale=ru">RU</a></li>
+                        <li><a href="/calc/user/new?locale=en">EN</a></li>
                     </ul>
                 </div>
             </div>
@@ -43,52 +43,50 @@
             <h4 class="h4"><spring:message code="registrationPage"/></h4>
         </div>
         <hr>
-        <c:url value="/calc/user?add" var="addUserUrl"/>
-        <sf:form class="form-horizontal" modelAttribute="mUser" action="${addUserUrl}" method="POST">
-            <input type="hidden"  name="userId" value="${mUser.userId}"/>
+        <c:url value="/calc/user/add" var="addUserUrl"/>
+        <sf:form class="form-horizontal" modelAttribute="user" action="${addUserUrl}" method="POST">
+            <input type="hidden"  name="userId" value="${user.userId}"/>
                 <div class="form-group">
-                    <label class="col-sm-3 control-label" for="name" style="text-align: right"><spring:message code="name"/></label>
+                    <label class="col-sm-3 control-label" for="inputName" style="text-align: right"><spring:message code="name"/></label>
                     <div class="col-sm-7">
-                        <sf:input class="form-control" id="name" type="text" value="${mUser.name}" path="name" size="30" placeholder="Name"/>
-                        <sf:errors path="name" cssStyle="color: red" />
+                        <sf:input class="form-control" type="text" id="inputName" value="${user.name}" path="name"/>
+                        <div class="help-block"><sf:errors path="name" cssStyle="color: red"/></div>
                     </div>
                 </div>
 
                 <div class="form-group">
-                    <label class="col-sm-3 control-label" for="email" style="text-align: right">Email</label>
+                    <label class="col-sm-3 control-label" for="inputEmail" style="text-align: right">Email</label>
                     <div class="col-sm-7">
-                        <sf:input class="form-control" id="email" type="text" value="${mUser.email}" path="email" placeholder="Email"/>
-                        <sf:errors path="email" cssStyle="color: red"/>
+                        <sf:input class="form-control" type ="text" id="inputEmail" value="${user.email}" path="email"/>
+                        <div class="help-block"><sf:errors path="email" cssStyle="color: red"/></div>
                     </div>
                 </div>
 
             <c:choose>
-                <c:when test="${user.name != null}">
+                <c:when test="${sessionUserName != null}">
                     <div class="form-group">
-                        <label class="col-sm-3 control-label" for="userName" style="text-align: right"><spring:message code="userName"/></label>
+                        <label class="col-sm-3 control-label" for="inputUserName" style="text-align: right"><spring:message code="userName"/></label>
                         <div class="col-sm-7">
-                            <input class="form-control" id="userName" type="text" value="${mUser.userName}" maxlength="20" readonly/>
+                            <input class="form-control" id="inputUserName" type="text" value="${user.userName}" disabled/>
                         </div>
                     </div>
                 </c:when>
                 <c:otherwise>
                     <div class="form-group">
-                        <label class="col-sm-3 control-label" for="userName" style="text-align: right"><spring:message code="userName"/></label>
+                        <label class="col-sm-3 control-label" for="inputUserName" style="text-align: right"><spring:message code="userName"/></label>
                         <div class="col-sm-7">
-                            <sf:input class="form-control" id="userName" type="text" value="${mUser.userName}" path="userName" maxlength="20" placeholder="Username (login)"/>
-                            <span class="help-block" id="userName_msg"><spring:message code="noSpaceCharacters"/></span>
-                            <sf:errors path="userName" cssStyle="color: red"/>
+                            <sf:input class="form-control" id="inputUserName" type="text" value="${user.userName}" path="userName"/>
+                            <div class="help-block"><sf:errors path="userName" cssStyle="color: red"/></div>
                         </div>
                     </div>
                 </c:otherwise>
             </c:choose>
 
                 <div class="form-group">
-                    <label class="col-sm-3 control-label" for="password"><spring:message code="password"/></label>
+                    <label class="col-sm-3 control-label" for="inputPassword"><spring:message code="password"/></label>
                     <div class="col-sm-7">
-                        <sf:input class="form-control" id="password" type="text" value="${mUser.password}" path="password" maxlength="20" placeholder="Password"/>
-                        <span class="help-block" id="password_msg"><spring:message code="noSpaceCharacters"/></span>
-                        <sf:errors path="password" cssStyle="color: red"/>
+                        <sf:input class="form-control" id="inputPassword" value="${user.password}" path="password" maxlength="255"/>
+                        <div class="help-block"><sf:errors path="password" cssStyle="color: red"/></div>
                     </div>
                 </div>
 
@@ -98,15 +96,14 @@
                     </div>
                 </div>
         </sf:form>
-
-        <div class="text-center">
-            <c:if test="${param.fail != null}">
-                <div class="alert-warning" style="text-align: center">
-                    <p><spring:message code="registrationFail"/></p>
-                </div>
-            </c:if>
-        </div>
     </section>
+    <div class="text-center">
+        <c:if test="${param.fail != null}">
+            <div class="alert-warning" style="text-align: center">
+                <p><spring:message code="registrationFail"/></p>
+            </div>
+        </c:if>
+    </div>
     <footer><div id="footer">Developed by K. Belotserkovsky, 2016</div></footer>
 </div>
 </body>

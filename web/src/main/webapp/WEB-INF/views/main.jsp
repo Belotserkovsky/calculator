@@ -22,10 +22,10 @@
                 <div class="collapse navbar-collapse" id="navbar">
                     <ul class="nav navbar-nav navbar-left">
                         <li>
-                            <p class="navbar-text" style="font-style: italic">${user.name}</p>
+                            <p class="navbar-text" style="font-style: italic">${sessionUserName}</p>
                         </li>
                         <li>
-                            <c:url var="editUrl" value="/calc/user/main?edit"/>
+                            <c:url var="editUrl" value="/calc/user/update"/>
                             <a href="${editUrl}"><spring:message code="userInfo"/></a>
                         </li>
                         <li>
@@ -38,9 +38,9 @@
                         </li>
                     </ul>
                     <ul class="nav navbar-nav navbar-right">
-                        <c:url var="localeRu" value="/calc/user/main&locale=ru"/>
+                        <c:url var="localeRu" value="/calc/user/main?locale=ru"/>
                         <li><a href="${localeRu}">RU</a></li>
-                        <c:url var="localeEn" value="/calc/user/main&locale=en"/>
+                        <c:url var="localeEn" value="/calc/user/main?locale=en"/>
                         <li><a href="${localeEn}">EN</a></li>
                     </ul>
                 </div>
@@ -82,15 +82,14 @@
                 </tr>
             </table>
         </form>
-
-        <div class="text-center">
-            <c:if test="${param.fail != null}">
-                <div class="alert-warning" style="text-align: center">
-                    <p><spring:message code="calculationFail"/></p>
-                </div>
-            </c:if>
-        </div>
     </section>
+    <div class="text-center">
+        <c:if test="${param.fail != null}">
+            <div class="alert-warning" style="text-align: center">
+                <p><spring:message code="calculationFail"/></p>
+            </div>
+        </c:if>
+    </div>
     <footer><div id="footer">Developed by K. Belotserkovsky, 2016</div></footer>
 </div>
 </body>

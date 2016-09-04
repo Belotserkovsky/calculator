@@ -19,10 +19,10 @@
                 <div class="collapse navbar-collapse" id="navbar">
                     <ul class="nav navbar-nav navbar-left">
                         <li>
-                            <p class="navbar-text" style="font-style: italic">${user.name}</p>
+                            <p class="navbar-text" style="font-style: italic">${sessionUserName}</p>
                         </li>
                         <li>
-                            <c:url var="editUrl" value="/calc/user/main?edit"/>
+                            <c:url var="editUrl" value="/calc/user/update"/>
                             <a href="${editUrl}"><spring:message code="userInfo"/></a>
                         </li>
                         <li>
@@ -48,14 +48,12 @@
         <table class="table table-striped">
             <caption><spring:message code="history"/></caption>
             <tr>
-                <th>ID</th>
-                <th>Creation date</th>
-                <th>Expression</th>
-                <th>Result</th>
+                <th><spring:message code="creation.date"/></th>
+                <th><spring:message code="expression"/></th>
+                <th><spring:message code="result"/></th>
             </tr>
             <c:forEach var="history" items="${listHistory}">
                 <tr>
-                    <td>${history.id}</td>
                     <td>${history.creationDate}</td>
                     <td>${history.expression}</td>
                     <td>${history.result}</td>
@@ -66,22 +64,24 @@
         <%--For displaying Page numbers.
         The when condition does not display a link for the current page--%>
 
-        <table class="table" id="tHistory" border="0">
+        <table class="table" border="0" style="text-align: center">
             <tr>
-                <c:forEach begin="1" end="${numberOfPages}" var="i">
+                <td>
+                    <c:forEach begin="1" end="${numberOfPages}" var="i">
                     <c:choose>
                         <c:when test="${currentPage eq i}">
-                            <td>${i}</td>
+                        ${i}
                         </c:when>
                         <c:otherwise>
-                            <td><a href="/calc/user/history?page=${i}">${i}</a></td>
+                            <a href="/calc/user/history?page=${i}"> ${i}</a>
                         </c:otherwise>
                     </c:choose>
-                </c:forEach>
+                    </c:forEach>
+                </td>
             </tr>
         </table>
 
-        <%--For displaying Previous and Next link xcept for the 1st page --%>
+        <%--For displaying Previous and Next link except for the 1st page --%>
         <nav aria-label="...">
             <ul class="pager">
                 <li>

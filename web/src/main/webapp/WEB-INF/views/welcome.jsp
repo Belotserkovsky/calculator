@@ -12,8 +12,8 @@
 <body>
     <div id="wrapper">
         <div style="text-align: right">
-            <c:url var="localeRu" value="/calc/user/main&locale=ru"/>
-            <c:url var="localeEn" value="/calc/user/main&locale=en"/>
+            <c:url var="localeRu" value="/calc/welcome?locale=ru"/>
+            <c:url var="localeEn" value="/calc/welcome?locale=en"/>
             <h5 class="h5"><a href="${localeRu}">RU</a> | <a href="${localeEn}">EN</a></h5>
         </div>
         <br>
@@ -28,14 +28,14 @@
                 <div class="form-group">
                     <label class="col-sm-4 control-label" for="uName" style="text-align: right"><spring:message code="userName"/></label>
                     <div class="col-sm-5">
-                        <input class="form-control" id="uName" name="userName" placeholder="Username (login)" required="required" />
+                        <input class="form-control" id="uName" name="userName" required="required" />
                     </div>
                 </div>
 
                 <div class="form-group">
                     <label class="col-sm-4 control-label" for="uPass" style="text-align: right"><spring:message code="password"/></label>
                     <div class="col-sm-5">
-                        <input class="form-control" type="password" id="uPass" name="password" placeholder="Password" required="required">
+                        <input class="form-control" type="password" id="uPass" name="password" required="required">
                     </div>
                 </div>
 

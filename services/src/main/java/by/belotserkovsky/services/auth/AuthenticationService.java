@@ -18,6 +18,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
+ * util for authorization with Spring Security
  * Created by K.Belotserkovsky
  */
 
